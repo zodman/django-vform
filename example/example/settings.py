@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'djangomix',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LARAVELMIX_MANIFEST_DIRECTORY = os.path.join(BASE_DIR)
+LARAVELMIX_PUBLIC_URL= MEDIA_URL
