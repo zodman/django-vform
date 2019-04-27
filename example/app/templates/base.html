@@ -4,9 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>vform example</title>
+<style>
+[v-cloak] {
+  display: none;
+}
+
+</style>
+
 </head>
 <body>
-  <div id="app">
+  <div id="app" v-cloak>
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Alert -->
       <div v-if="form.errors.any()">
