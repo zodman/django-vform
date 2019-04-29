@@ -1,8 +1,11 @@
 import  Vue from 'vue'
 import { Form, HasError, AlertError } from 'vform'
+
+import 'bulma'
+
 //import Form from 'vform'
  // Register the components
- Vue.component(HasError.name, HasError)
+Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
  new Vue({

@@ -11,6 +11,9 @@ let mix = require('laravel-mix');
  |
  */
 
+
+mix.setPublicPath('media/');
+mix.setResourceRoot('media/');
 mix.js('media/src/app.js', 'media/dist/')
     //.sass('src/app.scss', 'dist/');
 
@@ -31,8 +34,8 @@ mix.js('media/src/app.js', 'media/dist/')
 // mix.copy(from, to);
 // mix.copyDirectory(fromDir, toDir);
 // mix.minify(file);
-// mix.sourceMaps(); // Enable sourcemaps
-// mix.version(); // Enable versioning.
+mix.sourceMaps(); // Enable sourcemaps
+mix.version(); // Enable versioning.
 // mix.disableNotifications();
 // mix.setPublicPath('path/to/public');
 // mix.setResourceRoot('prefix/for/resource/locators');

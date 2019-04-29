@@ -14,6 +14,10 @@
 </head>
 <body>
   <div id="app" v-cloak>
+
+    <div class="section">
+    
+
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Alert -->
       <div v-if="form.errors.any()">
@@ -51,8 +55,9 @@
         Log In
       </button>
     </form>
+    </div>
   </div>
 
- <script src="{% mix 'media/dist/app.js' %}"></script>
+ <script src="{% mix 'dist/app.js' %}"></script>
 </body>
 </html>
