@@ -1,4 +1,4 @@
-{% load mix %}
+{% load mix widget_tweaks%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,34 @@
   <div id="app" v-cloak>
 
     <div class="section">
-    
+
+{{form.data|json_script:'form-id'}}
+
+    <form action="" method="POST">
+{% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+
+        
+{% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+        
+
+      <!-- Submit Button -->
+      <button :disabled="form.busy" type="submit">
+        Log In
+      </button>
+
+    </form>
+
 
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Alert -->

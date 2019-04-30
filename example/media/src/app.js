@@ -1,12 +1,17 @@
 import  Vue from 'vue'
 import { Form, HasError, AlertError } from 'vform'
-
+import axios from 'axios'
 import 'bulma'
 
 //import Form from 'vform'
  // Register the components
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+
+var AxiosMockAdapter = require('axios-mock-adapter');
+
+
+var def_form = JSON.parse(document.getElementById('form-id').textContent);
 
  new Vue({
    el: '#app',
