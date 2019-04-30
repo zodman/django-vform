@@ -48,7 +48,10 @@
             <div class="control">
                     <!-- {{ field.label_tag }} -->
 
-                {% render_field field  class+="input is-large" placeholder=field.name  autocomplete="off" %}
+                {% with "form."|add:field.name as vmodel %}
+                    
+                {% render_field field  class+="input is-large" placeholder=field.name  autocomplete="off"  v-model=vmodel %}
+                {% endwith %}
                 <p v-if="form.errors.has('{{field.name}}')"  class="help" v-bind:class="{ 'is-danger': form.errors.get('{{field.name}}')}"  >
                     ${ form.errors.get("{{field.name}}").message }
                 </p>

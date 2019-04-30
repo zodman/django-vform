@@ -25,7 +25,8 @@ class LoginForm(forms.Form):
 def home(request):
     f = LoginForm()
     if request.method == "POST":
-        f = LoginForm(json.loads(request.body))
+        data = json.loads(request.body)
+        f = LoginForm()
         if f.is_valid():
             pass
         else:
