@@ -14,9 +14,9 @@ let mix = require('laravel-mix');
 
 mix.setPublicPath('media/');
 mix.setResourceRoot('media/');
-mix.js('media/src/app.js', 'media/dist/')
-    //.sass('src/app.scss', 'dist/');
-
+mix.js('media/src/app.js', 'media/dist/');
+mix.js('media/src/form.js', 'media/dist/');
+mix.sass('media/src/app.scss','media/dist/');
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.
@@ -28,7 +28,7 @@ mix.js('media/src/app.js', 'media/dist/')
 // mix.less(src, output);
 // mix.stylus(src, output);
 // mix.postCss(src, output, [require('postcss-some-plugin')()]);
-// mix.browserSync('my-site.test');
+ mix.browserSync('localhost:8001');
 // mix.combine(files, destination);
 // mix.babel(files, destination); <-- Identical to mix.combine(), but also includes Babel compilation.
 // mix.copy(from, to);

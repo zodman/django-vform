@@ -3,47 +3,87 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>vform example</title>
-<style>
-[v-cloak] {
-  display: none;
-}
 
-</style>
 
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+<link rel="stylesheet" type="text/css" href="{% mix 'dist/app.css'%}">
+<script src="{% mix 'dist/app.js' %}"></script>
 </head>
 <body>
-  <div id="app" v-cloak>
-
-    <div class="section">
-
-{{form.data|json_script:'form-id'}}
-
-    <form action="" method="POST">
-{% csrf_token %}
-
-        {{ form.non_field_errors }}
 
 
-        
-{% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
-        {% if field.help_text %}
-        <p class="help">{{ field.help_text|safe }}</p>
-        {% endif %}
-    </div>
-{% endfor %}
-        
 
+
+ <section class="hero is-success is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h3 class="title has-text-grey">Login</h3>
+                    <p class="subtitle has-text-grey">Please login to proceed.</p>
+                    <div class="box">
+                        <figure class="avatar">
+                            <img src="https://placekitten.com/128/128">
+                        </figure>
+                    
+
+
+        <!-- {{form.params|pprint}} -->
+        {{form.params|json_script:'form-id'}}
+
+    <form id="app" action="" method="POST" @submit.prevent="login" @keydown="form.onKeydown($event)" v-cloak>
+      <div  v-if="form.errors.any()" >
+          <p  class="help is-danger" >
+          
+                    There were some problems with your input.
+          </p>
+      </div>
+
+    {{ form.non_field_errors }}
+    {% for field in form %}
+        <div class="field">
+            <div class="control">
+                    <!-- {{ field.label_tag }} -->
+
+                {% render_field field  class+="input is-large" placeholder=field.name  autocomplete="off" %}
+                <p v-if="form.errors.has('{{field.name}}')"  class="help" v-bind:class="{ 'is-danger': form.errors.get('{{field.name}}')}"  >
+                    ${ form.errors.get("{{field.name}}").message }
+                </p>
+
+                {% if field.help_text %}
+                    <p class="help" :class="{is-danger: form.errors.get('{{field.name}}')}" >{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
       <!-- Submit Button -->
-      <button :disabled="form.busy" type="submit">
+      <button :disabled="form.busy" type="submit" class="button is-block is-info is-large is-fullwidth" :class="{'is-loading': form.busy}">
         Log In
       </button>
 
+
+    {{form.media}}
     </form>
 
+                    </div>
+
+
+                    <p class="has-text-grey">
+                        <a href="../">Sign Up</a> &nbsp;·&nbsp;
+                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
+                        <a href="../">Need Help?</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    {% comment %}
 
     <form @submit.prevent="login" @keydown="form.onKeydown($event)">
       <!-- Alert -->
@@ -82,9 +122,7 @@
         Log In
       </button>
     </form>
-    </div>
-  </div>
+    {% endcomment %}
 
- <script src="{% mix 'dist/app.js' %}"></script>
 </body>
 </html>
